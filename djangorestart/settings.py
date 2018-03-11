@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'werkzeug_debugger_runserver',
-    'django_extensions',
+    # 'werkzeug_debugger_runserver',
+    # 'django_extensions',
     'review.apps.ReviewConfig',
 ]
 
@@ -73,22 +73,22 @@ WSGI_APPLICATION = 'djangorestart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crm',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '192.168.43.45',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'crm',
+#         'USER': 'root',
+#         'PASSWORD': '123456',
+#         'HOST': '192.168.43.45',
+#         'PORT': '3306',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 

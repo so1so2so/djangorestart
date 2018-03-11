@@ -7,27 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>管理</title>
-    <!-- 引入bootstrap样式 -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 引入bootstrap-table样式 -->
-    <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
-
-    <!-- jquery -->
-    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-    <!-- bootstrap-table.min.js -->
-    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-    <!-- 引入中文语言包 -->
-    <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
-
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
     <link href="/static/css/dashboard.css" rel="stylesheet">
-    {% block cs %}
+    {% block css %}
     {% endblock %}
-{% block js_befare %}
-{% endblock %}
 </head>
 
 <body>
@@ -74,43 +58,33 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
-
-            <div class="row placeholders">
-                教师
-            </div>
             <h2 class="sub-header">teacher</h2>
+
             <div class="table-responsive">
-                {% block table_inline %}
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1,001</td>
-                    </tr>
-                    </tbody>
-                </table>
-                 {% endblock %}
+      {% block table_inline %}
+                {% endblock %}
             </div>
         </div>
     </div>
 </div>
-
-<table data-toggle="table" data-url="data1.json">
-    <thead>
-        <tr>
-            <th data-field="id">序号</th>
-            <th data-field="name">名称</th>
-            <th data-field="price">价格</th>
-        </tr>
-    </thead>
-</table>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.cookie.js"></script>
+
+<script type="text/javascript">
+        var csrftoken = $.cookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+ </script>
 {% block js %}
 {% endblock %}
 </body>
