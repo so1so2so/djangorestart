@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^student/$', views.student,name='student'),
     url(r'^allclass/$', views.Allclass, name='allclass'),
     url(r'^teacher/$', views.teacher, name='teacher'),
+    url(r'^teacher_add/$', views.teacher_change, name='teacher_change'),
 ]

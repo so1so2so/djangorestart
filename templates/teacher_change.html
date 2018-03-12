@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block table_inline %}
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>选择操作</th>
+                        <th>姓名</th>
+                        <th>年龄</th>
+                        <th>性别</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for foo in change %}
+                        <tr>
+                            <td><button>{{ foo.id }}</button></td>
+                            <td><input type="text" value="{{ foo.Teacher_name }}"></td>
+                            <td><input type="text" value="{{ foo.age }}"></td>
+                            <td><input type="text" value="{{ foo.get_sex_display }}"></td>
+                            <td>
+                                <a style="cursor: pointer;" select="del" name="{{ foo.id }}">提交</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+{% endblock %}
