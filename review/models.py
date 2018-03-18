@@ -10,15 +10,14 @@ class Students(models.Model):
     name = models.CharField(max_length=20, verbose_name="学生姓名")
     # teacher = models.ManyToManyField("Teacher")
     allclass = models.ForeignKey("Allclass")
-    age = models.IntegerField(verbose_name="年龄",default=None)
+    age = models.IntegerField(verbose_name="年龄", default=None)
     choise = (
         (0, "男"),
         (1, "女"),
         (2, "未知"),
     )
-    phone=models.IntegerField(verbose_name="电话",default=None)
+    phone = models.IntegerField(verbose_name="电话", default=None)
     sex = models.IntegerField(verbose_name="性别", choices=choise, default=2)
-
 
     class Meta:
         verbose_name = '学生'
@@ -36,7 +35,8 @@ class Teacher(models.Model):
         (2, "未知"),
     )
     sex = models.IntegerField(verbose_name="性别", choices=choise, default=2)
-    age = models.IntegerField(verbose_name="年龄",default=None)
+    age = models.IntegerField(verbose_name="年龄", default=None)
+
     class Meta:
         verbose_name = '教师'
         verbose_name_plural = "教师表"
@@ -48,7 +48,6 @@ class Teacher(models.Model):
 class Allclass(models.Model):
     class_name = models.CharField(max_length=20, verbose_name="班级名称")
     teacher = models.ManyToManyField("Teacher")
-
 
     class Meta:
         verbose_name = '班级'

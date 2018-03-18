@@ -13,15 +13,41 @@
                     <tbody>
                     {% for foo in change %}
                         <tr>
-                            <td><button>{{ foo.id }}</button></td>
-                            <td><input type="text" value="{{ foo.Teacher_name }}"></td>
-                            <td><input type="text" value="{{ foo.age }}"></td>
-                            <td><input type="text" value="{{ foo.get_sex_display }}"></td>
+                            <td pind ="id">{{ foo.id }}</td>
+                            <td><input type="text" pind ="name" value="{{ foo.Teacher_name }}"></td>
+                            <td><input type="text" pind ="age" value="{{ foo.age }}"></td>
+                            <td><input type="text" pind ="sex" value="{{ foo.get_sex_display }}"></td>
                             <td>
-                                <a style="cursor: pointer;" select="del" name="{{ foo.id }}">提交</a>
+                                <a style="cursor: pointer;" select="del" name="{{ foo.id }}" type="submit">提交</a>
+                                <span message="message"></span>
                             </td>
                         </tr>
                     </tbody>
                     {% endfor %}
                 </table>
+{% endblock %}
+{% block js %}
+<script>
+$("[select='del']").click(function () {
+    var id =$("[pind='id']")[0].innerText
+    var name=$("input[pind='name']").val()
+    var age=$("input[pind='age']").val()
+    var sex=$("input[pind='sex']").val()
+     $.ajax({
+         url:{% url "teacher" %},
+            type:"POST",
+            data:{
+                nid:id,
+                name:name,
+                age:age,
+                sex:sex,
+            },
+            dataType:'json',
+            success:function (date) {
+                console.log(date)
+            }
+        })
+{#         window.location.reload();#}
+})
+</script>
 {% endblock %}

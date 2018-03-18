@@ -17,7 +17,7 @@
                     <tbody>
                     {% for foo in allteacher %}
                         <tr>
-                            <td><button>a</button></td>
+                            <td><button>{{ foo.id }}</button></td>
                             <td>{{ foo.Teacher_name }}</td>
                             <td>{{ foo.age }}</td>
                             <td>{{ foo.get_sex_display }}</td>
@@ -25,7 +25,7 @@
                                 <a  style="cursor: pointer;" select="add" name="{{ foo.id }}">增加</a>|
                                 <a  href="{% url 'teacher_change' %}?nid={{ foo.id }}" style="cursor: pointer;" select="add" name="{{ foo.id }}">修改2</a>|
                                 <button class="btn  btn-lg" data-toggle="modal" data-target="#myModal">
-                                <a style="cursor: pointer;" select="change" name="{{ foo.id }}">修改</a>
+                                <a style="cursor: pointer;" select="change" name="{{ foo.id }}">弹出框增加</a>
                                     </button>
                                 <a style="cursor: pointer;" select="del" name="{{ foo.id }}">删除</a>
                             </td>
