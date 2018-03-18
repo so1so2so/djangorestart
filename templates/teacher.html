@@ -93,7 +93,10 @@ $(function () { $('#myModal').modal({
         $.ajax({
              url:{% url "teacher" %},
             type:"POST",
-            data:{t_id:t_id}
+            data:{t_id:t_id},
+            success:function (data) {
+                console.log(data)
+            }
         })
          window.location.reload();
     })

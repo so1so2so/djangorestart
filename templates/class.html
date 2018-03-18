@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="{% url 'allclass' %}" method="POST">
+        {% csrf_token %}
+{#       {{ obj.class_name.label }}  {{ obj.class_name.id_for_label }}#}
+           <label id="{{ obj.class_name.id_for_label }}">{{ obj.class_name.label }}</label>
+           {{ obj.class_name }}
+{#        <p>{{ obj.teacher }} {{ obj.errors.teacher.0 }}</p>#}
+        <input type="submit" value="提交" />
+    </form>
+</body>
+</html>
