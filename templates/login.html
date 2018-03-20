@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="user" placeholder="用户名" /><span>{{ obj.errors.user.0 }}</span>
+        <input type="text" name="email" placeholder="邮箱" />
+        <input type="text" name="phone" placeholder="手机"/>
+        <input type="text" name="pwd" placeholder="密码"/>
+        <input type="submit" value="注册" />
+    </form>
+
+
+    ----------------------------------------------------------
+<form action="{% url 'login' %}" method="POST">
+    <div>
+        {% csrf_token %}
+        {{ obj.user.label }} {{ obj.user }}--邮箱{{ obj.email }}--手机{{ obj.phone }}--密码{{ obj.passwd }}
+        <input type="submit" value="注册" />
+    </div>
+</form>
+
+
+    ----------------------------------------------------------
+<form>
+     {% csrf_token %}
+    {{ obj.as_p }}
+    <input type="submit" value="注册" />
+</form>
+</body>
+</html>

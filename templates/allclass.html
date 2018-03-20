@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST" action="{% url 'allclass2' %}">
+    {% csrf_token %}
+<p>{{ obj.class_name.label }}{{ obj.class_name }}</p> <span class="error"></span>
+<p>{{ obj.teacher.label }}{{ obj.teacher }}</p>
+    <p><input   type="button" id = 'submit' value="点击注册"></p>
+    <p><input   type="submit" value="点击注册2"></p>
+</form>
+</body>
+<script src="/static/js/jquery.min.js"></script>
+<script>
+
+
+{#     $('input').each(function(){#}
+{#                post_dict[$(this).attr("name")] = $(this).val();#}
+{#            });#}
+
+
+$('#submit').click(function () {
+        post_dict={}
+        var class_name=$('#id_class_name').val()
+        post_dict['class_name']=class_name
+        post_dict['teacher']=[]
+    $("select option:selected").each(function(){
+        post_dict['teacher'].push($(this).val())
+});
+                $.ajax({
+                url: {% url 'allclass2' %},
+                type: 'POST',
+                data: post_dict,
+                traditional:true,
+                dataType: 'json',
+                success: function(arg){
+                    if(!arg.status){
+                        console.log(arg.message['classname'])
+                        $('.error').text(arg.message['classname'])
+
+                    }else{
+                        $.each(arg.message, function(k,v){
+                            //<span class="error">s</span>
+                            var tag = document.createElement('span');
+                            tag.className = 'error';
+                            tag.innerText = v[0]['message'];
+                            $('input[name="'+ k +'"]').after(tag);
+                        })
+                    }
+                }
+            });
+                })
+</script>
+</html>

@@ -55,3 +55,16 @@ class Allclass(models.Model):
 
     def __unicode__(self):
         return self.class_name
+
+
+class User(models.Model):
+    user_name = models.CharField(max_length=20, verbose_name="用户名")
+    email_name = models.CharField(max_length=20, verbose_name="邮箱")
+    phone_name = models.CharField(max_length=20, verbose_name="手机")
+    passwd = models.CharField(max_length=20, verbose_name="密码")
+
+
+class Message(models.Model):
+    send_time = models.TimeField(verbose_name='发送时间')
+    send_chose = models.IntegerField(verbose_name='发送次数')
+    send_code = models.CharField(max_length=25, verbose_name='验证码')
