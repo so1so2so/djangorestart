@@ -11,6 +11,7 @@ from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from forms import LoginForm, TeacherForm, AllclassForm, Errorform
 import json
 
+
 # CACHE_TTL=getattr(settings,'CACHE_TTL',DEFAULT_TIMEOUT)
 # Create your views here
 # @cache_page(10)
@@ -111,16 +112,16 @@ def Allclass2(request):
         if obj.is_valid():
             print obj.cleaned_data
             obj_is_in = models.Allclass.objects.filter(class_name=obj.cleaned_data['class_name']).count()
-            if obj_is_in !=0:
-                ret_obj.message['classname']='班级已存在'
+            if obj_is_in != 0:
+                ret_obj.message['classname'] = '班级已存在'
                 return HttpResponse(json.dumps(ret_obj.__dict__))
             models.Allclass.objects.create(
                 class_name=obj.cleaned_data['class_name']
             ).teacher.add(*obj.cleaned_data['teacher'])
             print "返回数据正常",
         else:
-            ret_obj.message['classname']='数据格式不正确'
-            ret_obj.status=False
+            ret_obj.message['classname'] = '数据格式不正确'
+            ret_obj.status = False
             print obj.errors
             print obj.errors.as_json
         return HttpResponse(json.dumps(ret_obj.__dict__))
